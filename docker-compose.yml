@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  l4j:
+    image: l4j
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: 'l4j' 
+    ports:
+      - '8088:8080'
+  ldap:
+    image: ldap
+    build:
+        context: ExploitLDAP
+        dockerfile: Dockerfile
+    container_name: 'ldap' 
+    ports:
+      - '1389:1389'
+      - '8080:8080'
+      
+volumes:
+  openldap_data:
+    driver: local
